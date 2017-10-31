@@ -4,8 +4,8 @@ import lombok.ToString;
 
 import java.util.Scanner;
 
-@ToString
-public class Javelin extends Sports_eq {
+@ToString(callSuper = true)
+public class Javelin extends SportsEq {
     @Override
     public void init(Scanner scanner) {
         System.out.println("Ввод наименования (производителя) метательного копья ");

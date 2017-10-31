@@ -4,7 +4,7 @@ import lombok.ToString;
 
 import java.util.Scanner;
 
-@ToString
+@ToString(callSuper = true)
 public class Bob extends Coaching {
     @Override
     public void init(Scanner scanner) {

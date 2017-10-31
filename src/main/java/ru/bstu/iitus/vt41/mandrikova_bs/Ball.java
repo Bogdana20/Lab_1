@@ -5,9 +5,9 @@ import lombok.ToString;
 
 import java.util.Scanner;
 
-@ToString
+@ToString(callSuper = true)
 @Getter
-public class Ball extends Sports_eq {
+public class Ball extends SportsEq {
     private int radius;
 
     @Override

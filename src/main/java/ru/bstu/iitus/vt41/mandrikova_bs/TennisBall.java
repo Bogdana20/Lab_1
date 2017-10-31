@@ -4,7 +4,7 @@ import lombok.ToString;
 
 import java.util.Scanner;
 
-@ToString
+@ToString(callSuper = true)
 public class TennisBall extends Ball {
 
     @Override

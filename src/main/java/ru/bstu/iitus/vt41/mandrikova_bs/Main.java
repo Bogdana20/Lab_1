@@ -1,18 +1,21 @@
 package ru.bstu.iitus.vt41.mandrikova_bs;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Количество спортивного инвентаря: ");
-        Sports_eq[] sports_eqs = new Sports_eq[scanner.nextInt()];
-        initSports_eqs(sports_eqs);
+        SportsEq[] sportsEqs = new SportsEq[scanner.nextInt()];
+        initSportsEqs(sportsEqs);
     }
 
-    public static void initSports_eqs(Sports_eq[] sports_eqs) {
+    public static void initSportsEqs(SportsEq[] sportsEqs) {
         Scanner scanner = new Scanner(System.in);
-        for (int i = 0; i < sports_eqs.length; i++) {
+        for (int i = 0; i < sportsEqs.length; i++) {
 
             System.out.print("Выберете тип инвентаря: \n"
                     + "1 - Волейбольный_мяч;\n"
@@ -23,38 +26,45 @@ public class Main {
                     + "6 - Гиря;\n");
 
 
-            switch (scanner.nextInt()) {
-                case 1:
-                    sports_eqs[i] = new Volleyball();
-                    break;
-                case 2:
-                    sports_eqs[i] = new TennisBall();
-                    break;
-                case 3:
-                    sports_eqs[i] = new Racket();
-                    break;
-                case 4:
-                    sports_eqs[i] = new Javelin();
-                    break;
-                case 5:
-                    sports_eqs[i] = new Barbell();
-                    break;
-                case 6:
-                    sports_eqs[i] = new Bob();
-                    break;
-            }
-            sports_eqs[i].init(scanner);
+            Initialization(sportsEqs, scanner, i);
+            sportsEqs[i].init(scanner);
         }
-        System.out.println("Инвентарь, относящийся к теннису:\n" + (Tennis_in(sports_eqs)).toString());
+        List<SportsEq> sportsEqList = TennisIn(sportsEqs);
+
+
+        System.out.println("Инвентарь, относящийся к теннису:\n");
+        sportsEqList.forEach(System.out::println);
     }
 
-    public static Sports_eq Tennis_in(Sports_eq[] sports_eqs) {
-        Sports_eq TennisIn = null;
-        for (Sports_eq anSports_eqs : sports_eqs) {
-            if ("Tennis".equals(anSports_eqs.getSportType())) {
-                TennisIn = anSports_eqs;
-            }
+    private static void Initialization(SportsEq[] sportsEqs, Scanner scanner, int i) {
+        switch (scanner.nextInt()) {
+            case 1:
+                sportsEqs[i] = new Volleyball();
+                break;
+            case 2:
+                sportsEqs[i] = new TennisBall();
+                break;
+            case 3:
+                sportsEqs[i] = new Racket();
+                break;
+            case 4:
+                sportsEqs[i] = new Javelin();
+                break;
+            case 5:
+                sportsEqs[i] = new Barbell();
+                break;
+            case 6:
+                sportsEqs[i] = new Bob();
+                break;
         }
-        return TennisIn;
+    }
+
+    public static List<SportsEq> TennisIn(SportsEq[] sportsEqs) {
+
+
+        List<SportsEq> tennis = Arrays.stream(sportsEqs)
+                .filter(s -> s.getSportType().equals("Tennis"))
+                .collect(Collectors.toList());
+        return tennis;
     }
 }

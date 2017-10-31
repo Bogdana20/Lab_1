@@ -4,8 +4,8 @@ import lombok.ToString;
 
 import java.util.Scanner;
 
-@ToString
-public class Racket extends Sports_eq {
+@ToString(callSuper = true)
+public class Racket extends SportsEq {
 
     @Override
     public void init(Scanner scanner) {

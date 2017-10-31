@@ -4,8 +4,8 @@ import lombok.ToString;
 
 import java.util.Scanner;
 
-@ToString
-public class Coaching extends Sports_eq {
+@ToString(callSuper = true)
+public class Coaching extends SportsEq {
 
     @Override
     public void init(Scanner scanner) {
