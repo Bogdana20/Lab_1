@@ -25,8 +25,7 @@ public class Main {
                     + "5 - Штанга;\n"
                     + "6 - Гиря;\n");
 
-
-            Initialization(sportsEqs, scanner, i);
+            sportsEqs[i] = initialization(scanner);
             sportsEqs[i].init(scanner);
         }
         List<SportsEq> sportsEqList = TennisIn(sportsEqs);
@@ -36,26 +35,22 @@ public class Main {
         sportsEqList.forEach(System.out::println);
     }
 
-    private static void Initialization(SportsEq[] sportsEqs, Scanner scanner, int i) {
+    private static SportsEq initialization(Scanner scanner) {
         switch (scanner.nextInt()) {
             case 1:
-                sportsEqs[i] = new Volleyball();
-                break;
+                return new Volleyball();
             case 2:
-                sportsEqs[i] = new TennisBall();
-                break;
+                return new TennisBall();
             case 3:
-                sportsEqs[i] = new Racket();
-                break;
+                return new Racket();
             case 4:
-                sportsEqs[i] = new Javelin();
-                break;
+                return new Javelin();
             case 5:
-                sportsEqs[i] = new Barbell();
-                break;
+                return new Barbell();
             case 6:
-                sportsEqs[i] = new Bob();
-                break;
+                return new Bob();
+            default:
+                return null;
         }
     }
 
